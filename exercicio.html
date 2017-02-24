@@ -1,0 +1,48 @@
+<html>
+
+    <head>
+            <script>
+
+                    function calcularMaior(){
+                          
+                            var n1 = Number( document.getElementById("n1").value) ;
+
+                            var n2 = Number( document.getElementById("n2").value) ;
+
+                            var n3 = Number(document.getElementById("n3").value) ;
+
+                            var eleResultado = document.getElementById("resultado") ;
+                           
+                            var maior=0;
+
+                            if (n1>n2 && n1>n3){
+                                maior = n1;
+                            }else if (n2>n1 && n2>n3 ){
+                                maior = n2;
+                            }else {
+                                maior =n3;
+                            }
+                            
+
+                            eleResultado.innerHTML= "<b>"+maior+"</b>";
+
+
+                    }
+
+            </script>
+    </head>
+
+    <body>
+            <label>N1:</label>
+            <input id="n1">
+
+            <label>N2:</label>
+            <input id="n2">
+
+            <label>N3:</label>
+            <input id="n3">
+
+            <div id="resultado"> </div>
+            <input type="button" value="Maior" onclick="calcularMaior()"/>
+    </body>
+</html>
