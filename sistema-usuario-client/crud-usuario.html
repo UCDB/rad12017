@@ -5,6 +5,17 @@
      
     </head>
     <body>
+        
+
+        <form action="javascript:void(0)" onsubmit="app.adicionar()">
+
+                <input type="text" id="add-nome" placeholder="Novo Usuário">
+                <input type="submit" value="Adicionar">
+    
+        </form> 
+
+
+
         <p id="contador"></p>
         <table>
                 <tr>
@@ -67,6 +78,20 @@
                         this.listarTodos();
                     }
                 
+
+                    this.adicionar=function(){
+
+                        //acessando o campo com o nome do usuarios
+                        var elNome = document.getElementById("add-nome");
+                        //pegando o texto preenchido
+                        var usuario =  elNome.value;
+                        if(usuario){
+                                //inserindo no vetor
+                                this.usuarios.push(usuario);
+                                //Atualizando a tela
+                                this.listarTodos();
+                        }
+                    }
                 };
 
                 
