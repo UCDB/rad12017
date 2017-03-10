@@ -7,10 +7,11 @@
     <body>
         
 
-        <form action="javascript:void(0)" onsubmit="app.adicionar()">
+        <form action="javascript:void(0)" onsubmit="app.salvar()">
 
                 <input type="text" id="add-nome" placeholder="Novo Usuário">
-                <input type="submit" value="Adicionar">
+                <input type="submit" value="Salvar">
+                 <input type="button" value="Cancelar" onclick="app.novo()">
     
         </form> 
 
@@ -36,6 +37,7 @@
 
                     this.elUsuarios = document.getElementById("usuarios");
                     this.usuarios=['Jão','Zé','Maria'];
+                    this.itemEditar =-1;
 
                     this.contar = function (qtd){
                         var elContador = document.getElementById("contador");
@@ -61,6 +63,8 @@
                             dados+='<tr>';
                             dados+='<td>'+this.usuarios[i]+'</td>';
                             dados+='<td><button onclick="app.excluir('+i+')">excluir</button></td>';
+                            dados+='<td><button onclick="app.editar('+i+')">editar</button></td>';
+                          
                             dados+="</tr>";
                         }
 
@@ -79,19 +83,57 @@
                     }
                 
 
-                    this.adicionar=function(){
+                    this.salvar=function(){
 
                         //acessando o campo com o nome do usuarios
                         var elNome = document.getElementById("add-nome");
                         //pegando o texto preenchido
                         var usuario =  elNome.value;
+                      
+                     
                         if(usuario){
-                                //inserindo no vetor
-                                this.usuarios.push(usuario);
-                                //Atualizando a tela
+
+                                if(this.itemEditar==-1){
+                                    //inserindo no vetor
+                                    this.usuarios.push(usuario);
+                                
+                                }else {
+                                    //Altera quando tem alguem para alterar
+                                      this.usuarios.splice(this.itemEditar, 1, usuario.trim());  
+                                      this.itemEditar=-1;
+                                }
+
+                                 //Atualizando a tela
                                 this.listarTodos();
+                                this.novo();
+                        
+                        
                         }
+                     
+                    };
+
+                    this.novo=function(){
+                        this.itemEditar=-1;
+                        var elNome = document.getElementById("add-nome");
+                        elNome.value="";
                     }
+                
+                    this.editar=function(item){
+
+                        this.itemEditar = item;
+                        //acessando nome do array
+                        var nome = this.usuarios[item];
+
+                        if(nome){
+                            //Acessando o elemento no DOM  
+                            var elNome = document.getElementById("add-nome");
+                            //preenchendo o form
+                            elNome.value=nome;
+                        }
+
+
+                    }
+
                 };
 
                 
