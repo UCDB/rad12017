@@ -1,0 +1,69 @@
+<html>
+
+    <head>
+
+     
+    </head>
+    <body>
+        <p id="contador"></p>
+        <table>
+                <tr>
+                
+                </tr>
+                <tbody id="usuarios">
+
+                </tbody>    
+        </table>
+
+    </body>
+
+
+       <script>
+            //instancia de uma classe Anonima
+               var app= new function(){
+                    console.log("Instancinado app 2");
+
+                    this.elUsuarios = document.getElementById("usuarios");
+                    this.usuarios=['Jão','Zé','Maria'];
+
+                    this.contar = function (qtd){
+                        var elContador = document.getElementById("contador");
+                        var nome="Usuario";
+
+                        if (qtd){
+                            if (qtd>1){
+                                nome="Usuários";
+                            }
+                           elContador.innerHTML=qtd + ' '+ nome;
+                            
+                        }else {
+                            elContador.innerHTML='Sem ' + nome;
+                        }
+
+                    } ;
+
+
+                    this.listarTodos = function(){
+                        //gera String em formato tabela
+                        var dados = '';
+                        for (i=0;i<this.usuarios.length;i++){
+                            dados +="<tr><td>"+this.usuarios[i]+"</td></tr>";
+                        }
+
+                        //atualiza contador
+                        this.contar(this.usuarios.length);
+
+                        //atualizar DOM
+                        this.elUsuarios.innerHTML= dados;
+                    };
+
+
+                };
+
+            app.listarTodos();
+
+
+        </script>
+
+
+</html>
